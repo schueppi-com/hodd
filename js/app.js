@@ -377,38 +377,22 @@ function onMessageArrived(message) {
             `${BASE_TOPIC}/${topic[0]}/${topic[1]}/${properties[p]}/#`
           );
         }
-      } else if (
-        topic[2] in devices.deviceList[device_id]["nodes"][node]["properties"]
-      ) {
-        property = topic[2];
-        if (topic.length === 3) {
-          devices.deviceList[device_id]["nodes"][node]["properties"][property][
-            "state"
-          ] = payload;
-        } else if (topic[3] === "$name") {
-          devices.deviceList[device_id]["nodes"][node]["properties"][property][
-            "name"
-          ] = payload;
-        } else if (topic[3] === "$settable") {
-          devices.deviceList[device_id]["nodes"][node]["properties"][property][
-            "settable"
-          ] = payload;
-        } else if (topic[3] === "$datatype") {
-          devices.deviceList[device_id]["nodes"][node]["properties"][property][
-            "datatype"
-          ] = payload;
-        } else if (topic[3] === "$format") {
-          devices.deviceList[device_id]["nodes"][node]["properties"][property][
-            "format"
-          ] = payload;
-        } else if (topic[3] === "$retained") {
-          devices.deviceList[device_id]["nodes"][node]["properties"][property][
-            "retained"
-          ] = payload;
-        } else if (topic[3] === "$unit") {
-          devices.deviceList[device_id]["nodes"][node]["properties"][property][
-            "unit"
-          ] = payload;
+      } else if ( topic.length >= 3) {
+        if (topic[topic.length-1].substring(0,1) === "$") {
+          var property = topic.slice(2,topic.length-1).join('/');
+        } else {
+          var property = topic.slice(2,topic.length).join('/');
+        }
+        if (property in devices.deviceList[device_id]["nodes"][node]["properties"]){
+          if (topic[topic.length-1].substring(0,1) === "$") {
+            devices.deviceList[device_id]["nodes"][node]["properties"][property][
+              topic[topic.length-1].substring(1,topic[topic.length-1].length)
+            ] = payload;
+          } else {
+            devices.deviceList[device_id]["nodes"][node]["properties"][property][
+              "state"
+            ] = payload;
+          }
         }
       }
     }
