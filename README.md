@@ -1,4 +1,4 @@
-Forked from [GitHub rroemhild hodd](https://github.com/rroemhild/hodd).
+Forked from [GitHub rroemhild hodd](https://github.com/rroemhild/hodd) now @ my [GitLab](https://gitlab.com/schueppi/hodd).
 
 # HoDD - Homie Device Discovery
 
