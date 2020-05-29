@@ -10,7 +10,7 @@ var deviceSubscribtions = {};
 var colorPicker = VueColor.Compact;
 
 // MQTT client
-var BASE_TOPIC = "homie";
+var BASE_TOPIC = "+";
 var DISCOVERY_TOPIC = `${BASE_TOPIC}/+/$homie`;
 var client = new Paho.Client("localhost", 8084, clientId());
 
@@ -261,7 +261,9 @@ function onMessageArrived(message) {
     return;
   }
 
-  var topic = message.destinationName.slice(BASE_TOPIC.length + 1).split("/");
+  var completetopic = message.destinationName.split("/");
+  var BASE_TOPIC = completetopic[0];
+  var topic = completetopic.slice(1,completetopic.length);
   var payload = message.payloadString;
   var device_id = topic[0];
 
