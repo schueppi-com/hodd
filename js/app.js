@@ -12,7 +12,7 @@ var colorPicker = VueColor.Compact;
 // MQTT client
 var BASE_TOPIC = "+";
 var DISCOVERY_TOPIC = `${BASE_TOPIC}/+/$homie`;
-var client = new Paho.Client("localhost", 8084, clientId());
+var client = new Paho.Client("localhost", 9001, clientId());
 
 // vue
 var devices = new Vue({
@@ -109,8 +109,8 @@ var client_status = new Vue({
     connected: false,
     message: "disconnected",
     broker: "localhost",
-    port: 8084,
-    ssl: "true",
+    port: 9001,
+    ssl: "false",
     user: "",
     pass: "",
     reconnect: true,
