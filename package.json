@@ -1,0 +1,13 @@
+{
+  "name": "hodd_web_app",
+  "version": "0.1.0",
+  "description": "hodd on Docker",
+  "author": "Klemens Schueppert <schueppi@schueppi.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
